@@ -7,16 +7,17 @@
     <title>Bandsite</title>
     <link rel="stylesheet" type="text/css" href="./styles/bio.css">
     <link rel="stylesheet" type="text/css" href="./styles/global.css">
+    <script src="./scripts/script.js" defer></script>
 </head>
 <body>
     <header class="header">
         <nav class="nav">
-                <a class="nav__logo-link" href="">
+                <a class="nav__logo-link" href="./index.html">
                     <img class="nav__logo-icon" src="./assets/Logo/Logo-bandsite.svg"; alt="Bandsite Logo">
                 </a>
             <ul class="nav__nav-list">
                 <li class="nav__item nav__item--active">
-                    <a class="nav__link " href="" target="_self" title="home">Biography</a>
+                    <a class="nav__link " href="./index.html" target="_self" title="home">Biography</a>
                 </li>
                 <li class="nav__item nav__item--active">
                     <a class="nav__link" href="" target="_self">Shows</a>
@@ -73,22 +74,39 @@
                 </div>
         </section>
     </article>
+    <article class="comments">
+        <h2 class="comments__title">Join the Conversation</h2>
+            <div class="comments-form-container">
+                <img class="comments__avatar" src="./assets/Images/Mohan-muruge.jpg" alt="avatar of commenter">
+                <form class="comment-form">
+                    <label class="comment-form__name" for="comment-form__name">NAME</label>
+                    <input type=text name="name" id="comment-form__name" placeholder="Enter your name">
+                    <label class="comment-form__content" for="comment__content">COMMENT</label>
+                    <textarea type=text name="content" id="comment-form__content" placeholder="Add a new comment"></textarea>
+                    <button type="submit" class="comment-form__button">COMMENT</button>
+                </form>
+            </div>
+        <hr class="divider">
+            <div class="comments-container">
+
+            </div>
+    </article>
     <footer class="footer">
         <div class="social">
         <h1 class="section-header section-header__footer social">Get in Touch</h1>
             <ul class="social__list">
                 <li class="social__item">
-                    <a class="social__link" href=""; alt="instagram home">
+                    <a class="social__link" href="https://instagram.com"; alt="instagram home">
                         <img class="social__icon" src="./assets/Icons/SVG/Icon-instagram.svg"; title="Instagram icon">
                     </a>
                 </li>
                 <li class="social__item">
-                    <a class="social__link" href=""; alt="facebook home">
+                    <a class="social__link" href="https://facebook.com"; alt="facebook home">
                         <img class="social__icon" src="./assets/Icons/SVG/Icon-facebook.svg"; title="Facebook Icon">
                     </a>
                 </li>
                 <li class="social__item">
-                    <a class="social__link" href="#"; alt="twitter home">
+                    <a class="social__link" href="https://twitter.com"; alt="twitter home">
                         <img class="social__icon" src="./assets/Icons/SVG/Icon-twitter.svg"; title="Twitter Icon">
                     </a>
                 </li>

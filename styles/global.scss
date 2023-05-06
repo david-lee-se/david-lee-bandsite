@@ -11,7 +11,100 @@
                 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+.nav {
+    height: 4.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    line-height: 2rem;
+    background-color: #323232;
+    @include tablet {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
 
+        }
+    &__logo-link {
+        display: flex;
+        justify-content: center;
+        @include tablet {
+            padding-left: 2.25rem;
+        }
+        @include desktop {
+            padding-left: 6rem;
+        }
+    }
+    &__logo-icon {
+        height: 1.25rem;
+        width: 7.5rem;
+    }
+    &__nav-list {
+        display: flex;
+    }
+    &__item {
+        list-style-type: none;
+        width: 50%;
+        text-align: center;
+            &:hover, &:visited {
+                border-bottom: 2px solid white;
+            }
+        @include tablet {
+            width: auto;
+            height: 100%;
+            padding-left: 2.25rem;
+        }     
+    }
+    &__link {
+        text-decoration: none;
+        color: #E1E1E1;
+        font-size: .875rem; 
+        &:hover, &:visited {
+            color: white;
+            font-weight: bold;
+        }   
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    &__hero-background {
+        background-image: url(../assets/Images/hero-shows.jpg);
+        background-size: cover;
+        background-position-y: 50%;
+        height: calc(.6 * 100vw);
+        width: 100%;
+        max-height: 56.25rem;
+        &--shows {
+            display: flex;
+            flex-direction: column;
+            height: calc(.9 * 100vw);
+            
+
+        }
+    } 
+    &__hero-title {
+        font-weight: 600;
+        color: #fff;
+        font-size: calc(.078 * 100vw);
+        display: flex;
+        align-items: center;
+        padding-left: 1rem;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(50, 50, 50, .5);
+        @include tablet {
+            font-size: 3.75rem;
+            padding-left: 2.25rem;
+        }
+        @include desktop {
+            padding-left: 6rem;
+        }
+        &--shows {
+            background: none;
+        }
+    }
+}
 .section-header {
     padding: 1rem 0;
     font-weight: 600;

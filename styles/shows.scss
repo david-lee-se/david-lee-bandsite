@@ -1,0 +1,32 @@
+@use './partials/mixins' as *;
+@use './partials/variables' as *;
+@use './partials/media' as *;
+
+.header {
+
+    &__hero-background-cover {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: rgb(50, 50, 50, .5);
+        height: calc(.9 * 100vw);
+        
+    }
+    &__album-title {
+       color: white;
+       padding-left: 1rem;
+       padding-top: 2rem;
+       font-weight: 400;
+       font-size: .875rem;
+
+    }
+    &__song-container {
+        width: 95%;
+        height: 7rem;
+        padding-left: 1rem;
+        margin-bottom: 1.5rem;
+        border: none;
+
+    }
+
+}

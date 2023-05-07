@@ -72,7 +72,7 @@ commentFormEl.addEventListener('submit', (e) => {
     const commentText = e.target.content.value;
     newComment.username = nameText;
     newComment.userComment = commentText;
-    newComment.date = commentTime;
+    
 
     comments.unshift(newComment);
     e.target.reset();

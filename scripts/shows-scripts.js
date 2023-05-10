@@ -1,36 +1,4 @@
-const showDates =[
-            {   
-                date: "Mon Sept 06 2021",
-                venue: "Ronald Lane",
-                location: "San Francisco, CA"
-            },
-            {
-                date: "Tue Sept 21 2021",
-                venue: "Pier 3 East",
-                location: "San Francisco, CA"
-            },
-            {
-                date: "Fri Oct 15 2021 ",
-                venue: "View Lounge",
-                location: "San Francisco, CA"
-            },
-            {
-                date: "Sat Nov 06 2021",
-                venue: "Hyatt Agency",
-                location: "San Francisco, CA"
-            },
-            {
-                date: "Fri Nov 26 2021",
-                venue: "Moscow Center",
-                location: "San Francisco, CA"
-            },
-            {
-                date: "Wed Dec 15 2021",
-                venue: "Press Club",
-                location: "San Francisco, CA"
-            }
-]
-
+const showDates = []
 function createShowMobile(arrayObj) {
 
     parentDiv = document.querySelector(".shows");
@@ -46,7 +14,6 @@ function createShowMobile(arrayObj) {
     showDatesContainer.append(tableEl);
     parentDiv.append(showSectionHeader, showDatesContainer);
     
-
     const showCard = document.createElement("div");
     showCard.classList.add("show-dates-card");
 
@@ -84,27 +51,7 @@ function createShowMobile(arrayObj) {
 
     showCard.append(dateTitle, showDate, venueTitle, showVenue, locationTitle, showLocation, buyTicketsButton);
     parentDiv.append(showCard, divider);
-
 }
-
-function createShowsAll(showsArray) {
-    const windowWidth = window.innerWidth;
-    if (windowWidth <= 767) {
-        showsArray.forEach(createShowMobile);
-    }
-    else {
-        createShowsTablet(showsArray);
-    }
-}
-
-
-
-function createShowsTablet(showsArray) {
-    createShowTable();
-    createTableRow(showsArray);   
-}
-
-
 
 function createShowTable() {
 
@@ -119,7 +66,6 @@ function createShowTable() {
     const tableEl = document.createElement("div");
     tableEl.classList.add("show-dates-card__title-container");
     
-
     const titleDate = document.createElement("p");
     titleDate.classList.add("show-dates-card__title");
     titleDate.innerText = "DATE";
@@ -135,46 +81,91 @@ function createShowTable() {
     tableEl.append(titleDate, titleVenue, titleLocation);
     showDatesContainer.append(tableEl);
     parentDiv.append(showSectionHeader, showDatesContainer);
+    
 }
 
 function createTableRow(showsArray) {
     for (let i = 0; i <showsArray.length; i++) {
-    const showDatesContainer = document.querySelector(".show-dates")
-    rowEl = document.createElement("div");
-    rowEl.classList.add("show-dates-card__table-row");
-    dateEl = document.createElement("p");
-    dateEl.classList.add("show-dates-card__date");
-    dateEl.innerText = showsArray[i].date;
-    
-    venueEl = document.createElement("p");
-    venueEl.classList.add("show-dates-card__venue");
-    venueEl.innerText = showsArray[i].venue;
-    
-    locationEl = document.createElement("p");
-    locationEl.classList.add("show-dates-card__location");
-    locationEl.innerText = showsArray[i].location;
-    
-    const buyTicketsButton = document.createElement("button");
-    buyTicketsButton.setAttribute("type", "submit");
-    buyTicketsButton.innerText = "BUY TICKETS";
-    buyTicketsButton.classList.add("show-dates-card__button");
-    
 
-    rowEl.append(dateEl, venueEl, locationEl, buyTicketsButton);
-    showDatesContainer.append(rowEl);
-    
+        const showDatesContainer = document.querySelector(".show-dates")
+        
+        rowEl = document.createElement("div");
+        rowEl.classList.add("show-dates-card__table-row");
+        
+        dateEl = document.createElement("p");
+        dateEl.classList.add("show-dates-card__date");
+        dateEl.innerText = showsArray[i].date;;
+        
+        venueEl = document.createElement("p");
+        venueEl.classList.add("show-dates-card__venue");
+        venueEl.innerText = showsArray[i].venue;
+        
+        locationEl = document.createElement("p");
+        locationEl.classList.add("show-dates-card__location");
+        locationEl.innerText = showsArray[i].location;
+        
+        const buyTicketsButton = document.createElement("button");
+        buyTicketsButton.setAttribute("type", "submit");
+        buyTicketsButton.innerText = "BUY TICKETS";
+        buyTicketsButton.classList.add("show-dates-card__button");
+        
+
+        rowEl.append(dateEl, venueEl, locationEl, buyTicketsButton);
+        showDatesContainer.append(rowEl);
     }
 }
 
-createShowsAll(showDates);
+function createShowsTablet(showsArray) {
+    createShowTable();
+    createTableRow(showsArray);   
+}
 
-const showRow = document.querySelector(".show-dates");
-showRow.addEventListener("click", (event) => {
-        const allRows = document.querySelectorAll(".show-dates-card__table-row");
-        allRows.forEach((element) => {
-            element.classList.remove("show-dates-card__table-row--selected");
+function createShowsAll(showsArray) {
+    const windowWidth = window.innerWidth;
+    if (windowWidth <= 767) {
+        showsArray.forEach(createShowMobile);
+    }
+    else {
+        createShowsTablet(showsArray);
+    }
+}
+
+axios.get("https://project-1-api.herokuapp.com/showdates?api_key=$api_key")
+    .then((results) => {
+        results.data.forEach(shows => {
+            const showObj = {date: new Date(shows.date).toDateString(), venue: shows.place, location: shows.location}
+            showDates.push(showObj);
+            return showDates
         })
-        event.target.classList.add("show-dates-card__table-row--selected");
-})
+        createShowsAll(showDates);
+        rowHighlightHandler()
+    })
 
 
+
+function rowHighlightHandler() { 
+        const rowHighlight= document.querySelectorAll(".show-dates-card__table-row");
+        const location = document.querySelectorAll(".show-dates-card__location");
+        const venue = document.querySelectorAll(".show-dates-card__venue");
+        const date = document.querySelectorAll(".show-dates-card__date");
+        rowHighlight.forEach((event) => {
+            event.addEventListener("click", (e)=> {
+                location.forEach((location)=> {location.classList.remove("show-dates-card__table-row--selected")}) 
+            })
+            event.addEventListener("click", (e)=> {
+                date.forEach((date)=> {date.classList.remove("show-dates-card__table-row--selected")})
+            })
+            event.addEventListener("click", (e)=> {
+                venue.forEach((venue)=> {venue.classList.remove("show-dates-card__table-row--selected")})
+            })
+            event.addEventListener("click", (e)=> {
+                rowHighlight.forEach((rowHighlight)=> {rowHighlight.classList.remove("show-dates-card__table-row--selected")}) 
+            })
+            event.addEventListener("click", (e) => {e.target.classList.add("show-dates-card__table-row--selected");})
+        })
+}
+            
+
+    
+
+   

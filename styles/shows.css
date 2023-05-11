@@ -3,19 +3,19 @@ html {
 }
 
 @font-face {
-  font-family: Avenir Next;
+  font-family: Avenir Next pro Lt, sans-serif;
   src: url(../../assets/Font/AvenirNextLTPro-Regular.otf);
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
-  font-family: Avenir Next;
+  font-family: Avenir Next Pro Lt, sans-serif;
   src: url(../../assets/Font/AvenirNextLTPro-Bold.otf);
   font-weight: 700;
   font-style: normal;
 }
 @font-face {
-  font-family: Avenir Next;
+  font-family: Avenir Next Pro Lt, sans-serif;
   src: url(../../assets/Font/AvenirNextLTPro-Demi.otf);
   font-weight: 600;
   font-style: normal;
@@ -77,19 +77,34 @@ html {
   }
 }
 
+@media (min-width: 768px) {
+  .shows__mobile {
+    display: none;
+  }
+}
 @media (min-width: 1280px) {
-  .shows {
+  .shows__mobile {
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .shows__tablet {
+    display: none;
+  }
+}
+@media (min-width: 1280px) {
+  .shows__tablet {
     display: flex;
   }
 }
 
 @media (min-width: 768px) {
-  .show-dates {
+  .show-dates__tablet {
     padding: 2.25rem;
   }
 }
 @media (min-width: 1280px) {
-  .show-dates {
+  .show-dates__tablet {
     width: 80%;
     padding-top: 4rem;
   }
@@ -168,6 +183,9 @@ html {
   padding: 0 2rem;
   font-size: 0.875rem;
   font-weight: 600;
+}
+.show-dates-card__button:hover {
+  background-color: #000000;
 }
 @media (min-width: 768px) {
   .show-dates-card__button {

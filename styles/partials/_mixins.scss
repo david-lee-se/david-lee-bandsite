@@ -5,26 +5,7 @@ html {
 }
 
 
-@font-face {
-    font-family: Avenir Next;
-    src: url(../../assets/Font/AvenirNextLTPro-Regular.otf);
-    font-weight: 400;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: Avenir Next;
-    src: url(../../assets/Font/AvenirNextLTPro-Bold.otf);
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: Avenir Next;
-    src: url(../../assets/Font/AvenirNextLTPro-Demi.otf);
-    font-weight: 600;
-    font-style: normal;
-}
 
 @mixin tablet {
     @media (min-width: $tablet-breakpoint) {
@@ -34,6 +15,12 @@ html {
 
 @mixin desktop {
     @media (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: $tablet-breakpoint) {
         @content;
     }
 }

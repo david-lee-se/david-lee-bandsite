@@ -1,7 +1,14 @@
 const showDates = []
-function createShowMobile(arrayObj) {
 
-    parentDiv = document.querySelector(".shows");
+function createShowsDiv() {
+    parentArticle = document.querySelector(".shows");
+    parentDiv = document.createElement("div");
+    parentDiv.classList.add("shows__mobile");
+    parentArticle.append(parentDiv);
+}
+function createShowMobile(arrayObj) {
+   
+
     const showSectionHeader = document.createElement("h2");
     showSectionHeader.classList.add("section-header", "section-header__shows-title");
     showSectionHeader.innerText = "Shows";
@@ -55,13 +62,17 @@ function createShowMobile(arrayObj) {
 
 function createShowTable() {
 
-    parentDiv = document.querySelector(".shows");
+    parentArticle = document.querySelector(".shows");
+    const parentDiv = document.createElement("div");
+    parentDiv.classList.add("shows__tablet");
+    parentArticle.append(parentDiv);
+
     const showSectionHeader = document.createElement("h2");
     showSectionHeader.classList.add("section-header", "section-header__shows-title");
     showSectionHeader.innerText = "Shows";
     
     const showDatesContainer = document.createElement("div");
-    showDatesContainer.classList.add("show-dates")
+    showDatesContainer.classList.add("show-dates__tablet")
     
     const tableEl = document.createElement("div");
     tableEl.classList.add("show-dates-card__title-container");
@@ -87,7 +98,7 @@ function createShowTable() {
 function createTableRow(showsArray) {
     for (let i = 0; i <showsArray.length; i++) {
 
-        const showDatesContainer = document.querySelector(".show-dates")
+        const showDatesContainer = document.querySelector(".show-dates__tablet")
         
         rowEl = document.createElement("div");
         rowEl.classList.add("show-dates-card__table-row");
@@ -121,13 +132,10 @@ function createShowsTablet(showsArray) {
 }
 
 function createShowsAll(showsArray) {
-    const windowWidth = window.innerWidth;
-    if (windowWidth <= 767) {
+        createShowsDiv();
         showsArray.forEach(createShowMobile);
-    }
-    else {
         createShowsTablet(showsArray);
-    }
+    
 }
 
 axios.get("https://project-1-api.herokuapp.com/showdates?api_key=$api_key")

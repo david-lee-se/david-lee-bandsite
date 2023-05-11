@@ -1,6 +1,8 @@
 @use './partials/mixins' as *;
 @use './partials/variables' as *;
 @use './partials/media' as *;
+@use './partials/font' as *;
+@use './partials/global' as *;
 
 .header {
 
@@ -55,12 +57,27 @@
 
 }
 .shows {
+    &__mobile{
+    @include tablet {
+        display: none;
+    }
+    @include desktop {
+        display:none;
+    }}
+    &__tablet {
+    @include mobile {
+        display: none;
+    }
     @include desktop {
         display:flex;
     }
+}
     
 }
+
 .show-dates {
+
+    &__tablet{
     @include tablet {
         padding: 2.25rem;
     }
@@ -68,7 +85,7 @@
         width: 80%;
         padding-top: 4rem;
         
-    }
+    }}
     
 
 }
@@ -138,6 +155,9 @@
         padding: 0 2rem;
         font-size: $font-mobile;
         font-weight: 600;
+        &:hover {
+            background-color: #000000;
+        }
         @include tablet {
             width: 12rem;
             margin: 1rem;

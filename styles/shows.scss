@@ -22,7 +22,7 @@
        padding-left: 1rem;
        padding-top: 2rem;
        font-weight: 400;
-       font-size: .875rem;
+       font-size: calc(.04 * 100vw);
        @include tablet{
             font-size: 1.5rem;
             font-weight: 600;

@@ -28,7 +28,6 @@
         width: 100%;
         height: calc(.5 * 100vw);
         max-height: 611px;
-        // max-width: 380px;
             @include tablet {
             padding: 2.25rem 0;
             }
@@ -91,10 +90,12 @@
     }
     &__image-container {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: space-between;
         padding: 0 1rem 1rem 1rem;
         @include tablet {
+            flex-wrap: wrap;
+            flex-direction: row;
             padding: 1rem 0 0 0;
         } 
     }

@@ -381,7 +381,7 @@ html {
   padding-left: 1rem;
   padding-top: 2rem;
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: 4vw;
 }
 @media (min-width: 768px) {
   .header__album-title {

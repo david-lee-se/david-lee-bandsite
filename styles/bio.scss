@@ -1,6 +1,7 @@
 @use './partials/mixins' as *;
 @use './partials/variables' as *;
 @use './partials/media' as *;
+@use './partials/global' as *;
 
 
 
@@ -193,6 +194,9 @@
         color: #FFFFFF;
         padding: 0 2rem;
         margin-bottom: 1rem;
+        &:hover {
+            background-color: black;
+        }
         
 
     }
@@ -207,8 +211,8 @@
     border-color: #E1E1E1;
     background-color: #FAFAFA;
     padding: .875rem;
-    :active {
-        border-color: #323232;
+    &:focus {
+        outline: 1px solid black;
     }
 }
 
@@ -221,8 +225,8 @@
     border-color: #E1E1E1;
     background-color: #FAFAFA;
     padding: .75rem;
-    :active {
-        border-color: #323232;
+    &:focus {
+        outline: 1px solid black;
     }
 
 }

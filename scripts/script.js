@@ -18,7 +18,7 @@
 
 const commentFormEl = document.querySelector(".comment-form");
 const parentDiv = document.querySelector(".comments-container");
-const commentArray = [];
+
 
 
 
@@ -65,36 +65,47 @@ const dividerEl = document.createElement("hr");
 
 
 
-commentFormEl.addEventListener('submit', (e) => {
+const addNewComment = (e) => {
     e.preventDefault();
-    const newComment = {name: e.target.name.value, comment: e.target.content.value, date: new Date().toDateString()};
-    
-    commentArray.unshift(newComment);
-    e.target.reset();
-    displayAllComments();
-    
-    return commentArray;
-})
+    const newComment = {name: e.target.name.value, comment: e.target.content.value};
+    axios.post("https://project-1-api.herokuapp.com/comments?api_key=$api_key", newComment)
+        .then(result => {
+             e.target.reset();
+             displayAllNewComments();
+        })
+        .catch(error => {console.log("whoops")})
+}
 
 
-function displayAllComments () {
+function displayAllComments (commentArray) {
     parentDiv.innerHTML = " ";
-    for(let i = 0; i <= commentArray.length-1; i++) {
-
-    displayComment(commentArray[i])
+    for(let i = commentArray.length-1; i >= 0; i--) {
+        displayComment(commentArray[i])
 }}
 
-
-
-
 axios.get("https://project-1-api.herokuapp.com/comments?api_key=$api_key")
+    
     .then((result) => {
-        console.log(result)
+        const commentArray = [];
         result.data.forEach(comments => {
         const date = new Date(comments.timestamp).toDateString();
         const commentObj = {name: comments.name, comment: comments.comment, date: date}
         commentArray.push(commentObj);
         })
-        console.log(commentArray)
-        displayAllComments();
+        displayAllComments(commentArray);
     })
+
+
+function displayAllNewComments() {axios.get("https://project-1-api.herokuapp.com/comments?api_key=$api_key")
+    
+    .then((result) => {
+        const commentArray = [];
+        result.data.forEach(comments => {
+        const date = new Date(comments.timestamp).toDateString();
+        const commentObj = {name: comments.name, comment: comments.comment, date: date}
+        commentArray.push(commentObj);
+        })
+        displayAllComments(commentArray);
+    })}
+
+    commentFormEl.addEventListener('submit', addNewComment)

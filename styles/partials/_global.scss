@@ -1,6 +1,7 @@
-@use './partials/mixins' as *;
-@use './partials/variables' as *;
-@use './partials/media' as *;
+@use './mixins' as *;
+@use './media' as *;
+@use './variables' as *;
+
 
 * {
     box-sizing: border-box;
